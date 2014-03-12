@@ -1,7 +1,13 @@
 BigSite::Application.routes.draw do
   
-  devise_for :users
+
   root :to => "home#index"
+  
+  
+  namespace :api do
+    devise_for :users
+    resources :recipes, :only=>[:index, :show]
+  end  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -16,7 +22,6 @@ BigSite::Application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-
   # Example resource route with options:
   #   resources :products do
   #     member do
